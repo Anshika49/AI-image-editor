@@ -31,19 +31,26 @@ export function ResizeControls({ project }) {
     isLoading,
   } = useConvexMutation(api.projects.updateProject);
 
+  // useEffect(() => {
+  //   if (!isLoading && data) {
+  //     window.location.reload();
+  //   }
+  // }),
+  //   [data, isLoading];
+
   useEffect(() => {
-    if (!isLoading && data) {
-      window.location.reload();
-    }
-  }),
-    [data, isLoading];
+  if (!isLoading && data) {
+    window.location.reload();
+  }
+}, [data, isLoading]);
 
   // Calculate dimensions for aspect ratio based on original canvas size
   const calculateAspectRatioDimensions = (ratio) => {
     if (!project) return { width: project.width, height: project.height };
 
     const [ratioW, ratioH] = ratio;
-    const originalArea = project.width * project.height;
+    // const originalArea = project.width * project.height;
+const originalArea = (project?.width || 800) * (project?.height || 600);
 
     // Calculate new dimensions maintaining the same area approximately
     const aspectRatio = ratioW / ratioH;
@@ -90,7 +97,7 @@ export function ResizeControls({ project }) {
 
   // Calculate viewport scale to fit canvas in container
   const calculateViewportScale = () => {
-    const container = canvasEditor.getElement().parentNode;
+    const container = document.getElementById("canvas")?.parentElement;
     if (!container) return 1;
     const containerWidth = container.clientWidth - 40;
     const containerHeight = container.clientHeight - 40;
@@ -98,53 +105,106 @@ export function ResizeControls({ project }) {
     const scaleY = containerHeight / newHeight;
     return Math.min(scaleX, scaleY, 1);
   };
+const handleApplyResize = async () => {
+  if (
+    !canvasEditor ||
+    !project ||
+    (newWidth === project.width && newHeight === project.height)
+  ) {
+    return;
+  }
+
+  setProcessingMessage("Resizing canvas...");
+
+  try {
+    // Resize canvas using setDimensions (Fabric v7)
+    canvasEditor.setDimensions(
+      { width: newWidth, height: newHeight },
+      { backstoreOnly: false }
+    );
+
+    // Optional: maintain viewport scale
+    const container = document.getElementById("canvas")?.parentElement;
+    const viewportScale = container
+      ? Math.min(
+          (container.clientWidth - 40) / newWidth,
+          (container.clientHeight - 40) / newHeight,
+          1
+        )
+      : 1;
+
+    canvasEditor.setDimensions(
+      {
+        width: newWidth * viewportScale,
+        height: newHeight * viewportScale,
+      },
+      { backstoreOnly: false }
+    );
+    canvasEditor.setZoom(viewportScale);
+    canvasEditor.calcOffset();
+    canvasEditor.requestRenderAll();
+
+    // Update project in DB
+    await updateProject({
+      projectId: project._id,
+      width: newWidth,
+      height: newHeight,
+      canvasState: canvasEditor.toJSON(),
+    });
+  } catch (err) {
+    console.error("Error resizing canvas:", err);
+    alert("Failed to resize canvas. Please try again.");
+  } finally {
+    setProcessingMessage(null);
+  }
+};
 
   // Apply canvas resize
-  const handleApplyResize = async () => {
-    if (
-      !canvasEditor ||
-      !project ||
-      (newWidth === project.width && newHeight === project.height)
-    ) {
-      return;
-    }
+  // const handleApplyResize = async () => {
+  //   if (
+  //     !canvasEditor ||
+  //     !project ||
+  //     (newWidth === project.width && newHeight === project.height)
+  //   ) {
+  //     return;
+  //   }
 
-    setProcessingMessage("Resizing canvas...");
+  //   setProcessingMessage("Resizing canvas...");
 
-    try {
-      // Resize the canvas
-      canvasEditor.setWidth(newWidth);
-      canvasEditor.setHeight(newHeight);
+  //   try {
+  //     // Resize the canvas
+  //     canvasEditor.setDimensions(newWidth);
+  //     canvasEditor.setDimensions(newHeight);
 
-      // Calculate and apply viewport scale
-      const viewportScale = calculateViewportScale();
+  //     // Calculate and apply viewport scale
+  //     const viewportScale = calculateViewportScale();
 
-      canvasEditor.setDimensions(
-        {
-          width: newWidth * viewportScale,
-          height: newHeight * viewportScale,
-        },
-        { backstoreOnly: false }
-      );
+  //     canvasEditor.setDimensions(
+  //       {
+  //         width: newWidth * viewportScale,
+  //         height: newHeight * viewportScale,
+  //       },
+  //       { backstoreOnly: false }
+  //     );
 
-      canvasEditor.setZoom(viewportScale);
-      canvasEditor.calcOffset();
-      canvasEditor.requestRenderAll();
+  //     canvasEditor.setZoom(viewportScale);
+  //     canvasEditor.calcOffset();
+  //     canvasEditor.requestRenderAll();
 
-      // Update project in database
-      await updateProject({
-        projectId: project._id,
-        width: newWidth,
-        height: newHeight,
-        canvasState: canvasEditor.toJSON(),
-      });
-    } catch (error) {
-      console.error("Error resizing canvas:", error);
-      alert("Failed to resize canvas. Please try again.");
-    } finally {
-      setProcessingMessage(null);
-    }
-  };
+  //     // Update project in database
+  //     await updateProject({
+  //       projectId: project._id,
+  //       width: newWidth,
+  //       height: newHeight,
+  //       canvasState: canvasEditor.toJSON(),
+  //     });
+  //   } catch (error) {
+  //     console.error("Error resizing canvas:", error);
+  //     alert("Failed to resize canvas. Please try again.");
+  //   } finally {
+  //     setProcessingMessage(null);
+  //   }
+  // };
 
   if (!canvasEditor || !project) {
     return (
