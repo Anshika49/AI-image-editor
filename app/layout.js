@@ -1,43 +1,119 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "../components/theme-provider";
-import { Toaster } from "sonner";
-import FloatingShapes from '../components/floating-shapes';
-import { ClerkProvider } from "@clerk/nextjs";
 import Header from "../components/header";
-import { ConvexClientProvider } from "../components/ui/ConvexClientProvider";
+import { ConvexClientProvider } from "../components/ConvexClientProvider";
+import { ClerkProvider } from "@clerk/nextjs";
 import { shadesOfPurple } from "@clerk/themes";
+import { ThemeProvider } from "../components/theme-provider";
+import FloatingShapes from "../components/floating-shapes";
+import { Toaster } from "../components/ui/sonner";
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Pixel",
-  description: "AI Image Detector",
+  title: "Pixxel",
+  description: "Professional image editing powered by AI",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className= {`${inter.className}`}>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/logo-text.png" sizes="any" />
+      </head>
+      <body className={`${inter.className}`}>
         <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-            >
-            <ClerkProvider appearance={{ baseTheme: shadesOfPurple,}}>
-            <ConvexClientProvider> 
-            <Header />
-            <main className="bg-slate-900 min-h-screen text-white overflow-x-hidden">
-              <FloatingShapes/>
-              <Toaster richColors/>
-              {children}
-            </main>
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ClerkProvider
+            publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+            appearance={{
+              baseTheme: shadesOfPurple,
+            }}
+          >
+            <ConvexClientProvider>
+              <Header />
+              <main className="bg-slate-900 min-h-screen text-white overflow-x-hidden">
+                <FloatingShapes />
+                <Toaster richColors />
+
+                {children}
+              </main>
             </ConvexClientProvider>
-            </ClerkProvider>
-          </ThemeProvider>
-        
+          </ClerkProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+
+// import { Inter } from "next/font/google";
+// import "./globals.css";
+// import { ThemeProvider } from "../components/theme-provider";
+// import { Toaster } from "sonner";
+// import FloatingShapes from '../components/floating-shapes';
+// import { ClerkProvider } from "@clerk/nextjs";
+// import Header from "../components/header";
+// import { ConvexClientProvider } from "../components/ConvexClientProvider";
+// import { shadesOfPurple } from "@clerk/themes";
+// import { ConvexProviderWithClerk } from "convex/react-clerk";
+
+
+// const inter = Inter({subsets: ["latin"]});
+
+// export const metadata = {
+//   title: "Pixel",
+//   description: "AI Image Detector",
+// };
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en">
+//       <body className= {`${inter.className}`}>
+//         <ThemeProvider
+//             attribute="class"
+//             defaultTheme="dark"
+//             enableSystem
+//             disableTransitionOnChange
+//             >
+//             <ClerkProvider appearance={{ baseTheme: shadesOfPurple,}}>
+//             <ConvexProviderWithClerk client={convex}> 
+//             <Header />
+//             <main className="bg-slate-900 min-h-screen text-white overflow-x-hidden">
+//               <FloatingShapes/>
+//               <Toaster richColors/>
+//               {children}
+//             </main>
+//             </ConvexProviderWithClerk>
+//             </ClerkProvider>
+//           </ThemeProvider>
+        
+//       </body>
+//     </html>
+//   );
+// }
+// import { Inter } from "next/font/google";
+// import "./globals.css";
+// import Providers from "./providers";
+
+// const inter = Inter({ subsets: ["latin"] });
+
+// export const metadata = {
+//   title: "Pixel",
+//   description: "AI Image Detector",
+// };
+
+// export default function RootLayout({ children }) {
+//   return (
+//     <html lang="en">
+//       <body className={inter.className}>
+//         <Providers>
+//           {children}
+//         </Providers>
+//       </body>
+//     </html>
+//   );
+// }
