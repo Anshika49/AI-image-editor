@@ -65,7 +65,7 @@ export default function EditorPage() {
       }}
     >
       {/* Mobile Message - Show on screens smaller than lg (1024px) */}
-      <div className="lg:hidden min-h-screen bg-slate-900 flex items-center justify-center p-6">
+       {/* <div className="lg:hidden min-h-screen bg-slate-900 flex items-center justify-center p-6">
         <div className="text-center max-w-md">
           <Monitor className="h-16 w-16 text-cyan-400 mx-auto mb-6" />
           <h1 className="text-2xl font-bold text-white mb-4">
@@ -78,10 +78,10 @@ export default function EditorPage() {
             Please use a larger screen to access the full editing experience.
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Desktop Editor - Show on lg screens and above */}
-      <div className="hidden lg:block min-h-screen bg-slate-900">
+      <div className=" lg:block bg-slate-900">
         <div className="flex flex-col h-screen">
           {processingMessage && (
             <div className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center">
@@ -95,7 +95,7 @@ export default function EditorPage() {
                 </div>
               </div>
             </div>
-          )}
+          )} 
 
           {/* Top Bar */}
           <EditorTopBar project={project} />
