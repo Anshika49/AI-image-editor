@@ -123,17 +123,17 @@ export function NewProjectModal({ isOpen, onClose }) {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={handleClose}>
-        <DialogContent className="max-w-2xl bg-slate-800 border-white/10">
+        <DialogContent className="max-w-xl mx-auto bg-slate-800 border-white/10 max-h-[85vh] overflow-hidden flex flex-col">
           <DialogHeader>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <DialogTitle className="text-2xl font-bold text-white">
+                <DialogTitle className="text-md font-bold text-white">
                   Create New Project
                 </DialogTitle>
                 {isFree && (
                   <Badge
                     variant="secondary"
-                    className="bg-slate-700 text-white/70"
+                    className="bg-slate-700 text-white/70 text-xs"
                   >
                     {currentProjectCount}/3 projects
                   </Badge>
@@ -142,7 +142,7 @@ export function NewProjectModal({ isOpen, onClose }) {
             </div>
           </DialogHeader>
 
-          <div className="space-y-6">
+          <div className="space-y-6 overflow-y-auto flex-1 pr-2">
             {/* Project Limit Warning for Free Users */}
             {isFree && currentProjectCount >= 2 && (
               <Alert className="bg-amber-500/10 border-amber-500/20">
@@ -164,23 +164,23 @@ export function NewProjectModal({ isOpen, onClose }) {
             {!selectedFile ? (
               <div
                 {...getRootProps()}
-                className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-all ${
+                className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
                   isDragActive
                     ? "border-cyan-400 bg-cyan-400/5"
                     : "border-white/20 hover:border-white/40"
                 } ${!canCreate ? "opacity-50 pointer-events-none" : ""}`}
               >
                 <input {...getInputProps()} />
-                <Upload className="h-12 w-12 text-white/50 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">
+                <Upload className="h-10 w-10 text-white/50 mx-auto mb-3" />
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {isDragActive ? "Drop your image here" : "Upload an Image"}
                 </h3>
-                <p className="text-white/70 mb-4">
+                <p className="text-sm text-white/70 mb-3">
                   {canCreate
                     ? "Drag and drop your image, or click to browse"
                     : "Upgrade to Pro to create more projects"}
                 </p>
-                <p className="text-sm text-white/50">
+                <p className="text-xs text-white/50">
                   Supports PNG, JPG, WEBP up to 20MB
                 </p>
               </div>
@@ -191,7 +191,7 @@ export function NewProjectModal({ isOpen, onClose }) {
                   <img
                     src={previewUrl}
                     alt="Preview"
-                    className="w-full h-64 object-cover rounded-xl border border-white/10"
+                    className="w-full h-52 object-cover rounded-xl border border-white/10"
                   />
                   <Button
                     variant="ghost"
@@ -209,7 +209,7 @@ export function NewProjectModal({ isOpen, onClose }) {
 
                 {/* Project Title Input */}
                 <div className="space-y-2">
-                  <Label htmlFor="project-title" className="text-white">
+                  <Label htmlFor="project-title" className="text-sm text-white">
                     Project Title
                   </Label>
                   <Input
@@ -218,19 +218,19 @@ export function NewProjectModal({ isOpen, onClose }) {
                     value={projectTitle}
                     onChange={(e) => setProjectTitle(e.target.value)}
                     placeholder="Enter project name..."
-                    className="bg-slate-700 border-white/20 text-white placeholder-white/50 focus:border-cyan-400 focus:ring-cyan-400"
+                    className="bg-slate-700 border-white/20 text-sm text-white placeholder-white/50 focus:border-cyan-400 focus:ring-cyan-400"
                   />
                 </div>
 
                 {/* File Details */}
-                <div className="bg-slate-700/50 rounded-lg p-4">
+                <div className="bg-slate-700/50 rounded-lg p-1">
                   <div className="flex items-center gap-3">
-                    <ImageIcon className="h-5 w-5 text-cyan-400" />
+                    <ImageIcon className="h-4 w-4 text-cyan-400" />
                     <div>
-                      <p className="text-white font-medium">
+                      <p className="text-sm text-white font-medium">
                         {selectedFile.name}
                       </p>
-                      <p className="text-white/70 text-sm">
+                      <p className="text-xs text-white/70">
                         {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                       </p>
                     </div>
@@ -240,9 +240,10 @@ export function NewProjectModal({ isOpen, onClose }) {
             )}
           </div>
 
-          <DialogFooter className="gap-3">
+          <DialogFooter className="gap-2 border-t border-white/10 pt-4">
             <Button
               variant="ghost"
+              size="xs"
               onClick={handleClose}
               disabled={isUploading}
               className="text-white/70 hover:text-white"
@@ -251,6 +252,7 @@ export function NewProjectModal({ isOpen, onClose }) {
             </Button>
 
             <Button
+              size="xs"
               onClick={handleCreateProject}
               disabled={!selectedFile || !projectTitle.trim() || isUploading}
               variant="primary"

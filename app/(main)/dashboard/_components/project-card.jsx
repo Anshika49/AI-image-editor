@@ -33,9 +33,9 @@ export default function ProjectCard({ project, onEdit }) {
   };
 
   return (
-    <Card className="py-0 group relative bg-slate-800/50 overflow-hidden hover:border-white/20 transition-all hover:transform hover:scale-[1.02]">
+    <Card className="w-full max-w-[22rem] py-0 group relative bg-slate-800/50 overflow-hidden hover:border-white/20 transition-all hover:transform hover:scale-[1.02]">
       {/* Thumbnail */}
-      <div className="aspect-video bg-slate-700 relative overflow-hidden">
+      <div className="aspect-[5/2] bg-slate-700 relative overflow-hidden">
         {project.thumbnailUrl && (
           <img
             src={project.thumbnailUrl}
@@ -64,12 +64,12 @@ export default function ProjectCard({ project, onEdit }) {
       </div>
 
       {/* Project Info */}
-      <CardContent className="pb-6">
-        <h3 className="font-semibold text-white mb-1 truncate">
+      <CardContent className="pb-4">
+        <p className="font-semibold text-md text-white mb-1 truncate">
           {project.title}
-        </h3>
+        </p>
 
-        <div className="flex items-center justify-between text-sm text-white/70">
+        <div className="flex items-center justify-between text-xs text-white/70">
           <span>Updated {lastUpdated}</span>
           <Badge
             variant="secondary"

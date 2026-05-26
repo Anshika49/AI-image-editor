@@ -22,10 +22,10 @@ export default function DashboardPage() {
         {/* Dashboard Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">
+            <h1 className="text-3xl font-bold text-white mb-2">
               Your Projects
             </h1>
-            <p className="text-white/70">
+            <p className="text-white/70 text-md">
               Create and manage your AI-powered image designs
             </p>
           </div>
@@ -36,7 +36,7 @@ export default function DashboardPage() {
             size="lg"
             className="gap-2"
           >
-            <Plus className="h-5 w-5" />
+            <Plus className="h-3 w-3" />
             New Project
           </Button>
         </div>
@@ -65,16 +65,16 @@ export default function DashboardPage() {
 // Empty state when user has no projects
 function EmptyState({ onCreateProject }) {
   return (
-    <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="w-24 h-24 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-600/20 flex items-center justify-center mb-6">
+    <div className="flex flex-col items-center justify-center  text-center">
+      <div className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-600/20 flex items-center justify-center mb-6">
         <Image className="h-12 w-12 text-cyan-400" />
       </div>
 
-      <h3 className="text-2xl font-semibold text-white mb-3">
+      <h3 className="text-xl font-semibold text-white mb-3">
         Create Your First Project
       </h3>
 
-      <p className="text-white/70 mb-8 max-w-md">
+      <p className="text-white/70 text-md mb-6 max-w-md">
         Upload an image to start editing with our powerful AI tools, or create a
         blank canvas to design from scratch.
       </p>
@@ -82,10 +82,10 @@ function EmptyState({ onCreateProject }) {
       <Button
         onClick={onCreateProject}
         variant="primary"
-        size="xl"
+        size="lg"
         className="gap-2"
       >
-        <Sparkles className="h-5 w-5" />
+        <Sparkles className="h-3 w-3" />
         Start Creating
       </Button>
     </div>
