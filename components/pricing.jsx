@@ -39,34 +39,34 @@ const PricingCard = ({
   return (
     <div
       ref={ref}
-      className={`relative backdrop-blur-lg border rounded-3xl p-8 transition-all duration-700 cursor-pointer ${
+      className={`relative backdrop-blur-lg border rounded-3xl p-5 transition-all duration-700 cursor-pointer ${
         featured
-          ? "bg-gradient-to-b from-blue-500/20 to-purple-600/20 border-blue-400/50 scale-105"
+          ? "bg-gradient-to-b from-blue-500/20 to-purple-600/20 border-blue-400/50"
           : "bg-white/5 border-white/10"
       } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"} ${
-        isHovered ? "transform scale-115  z-10" : ""
+        isHovered ? "transform scale-105 z-10" : ""
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {featured && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-bold">
+          <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">
             Most Popular
           </div>
         </div>
       )}
 
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-white mb-2">{plan}</h3>
-        <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6">
+        <h3 className="text-xl font-bold text-white mb-2">{plan}</h3>
+        <div className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6">
           ${price}
-          {price > 0 && <span className="text-lg text-gray-400">/month</span>}
+          {price > 0 && <span className="text-sm text-gray-400">/month</span>}
         </div>
 
         <ul className="space-y-3 mb-8">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center text-gray-300">
+            <li key={index} className="flex items-center text-sm text-gray-300">
               <span className="text-green-400 mr-3">✓</span>
               {feature}
             </li>
@@ -75,8 +75,8 @@ const PricingCard = ({
 
         <Button
           variant={featured ? "primary" : "glass"}
-          size="xl"
-          className="w-full"
+          size="sm"
+          className="w-50%"
           onClick={handlePopup}
           disabled={isCurrentPlan || !planId}
         >
@@ -122,16 +122,16 @@ const PricingSection = () => {
   ];
 
   return (
-    <section className="py-20" id="pricing">
+    <section className="py-10" id="pricing">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl font-bold text-white mb-6">
             Simple{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
               Pricing
             </span>
           </h2>
-          <p className="text-xl text-gray-300">
+          <p className="text-base text-gray-300">
             Start free and upgrade when you need more power. No hidden fees,
             cancel anytime.
           </p>

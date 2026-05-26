@@ -74,6 +74,7 @@ const Header = () => {
                 <span className='hidden md:flex'>Dashboard</span>
               </Button>
               </Link>
+              
               <UserButton appearance={{
                 elements: {
                   avatarBox: "w-8 h-8 rounded-lg border border-white/20",
