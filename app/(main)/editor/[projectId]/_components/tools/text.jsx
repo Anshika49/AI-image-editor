@@ -188,8 +188,8 @@ export function TextControls() {
       {/* Add Text Button */}
       <div className="space-y-4">
         <div>
-          <h3 className="text-sm font-medium text-white mb-2">Add Text</h3>
-          <p className="text-xs text-white/70 mb-4">
+          <h3 className="text-xs font-medium text-white mb-2">Add Text</h3>
+          <p className="text-[10px] text-white/70 mb-4">
             Click to add editable text to your canvas
           </p>
         </div>
@@ -202,7 +202,7 @@ export function TextControls() {
       {/* Text Editing Controls - Show only when text is selected */}
       {selectedText && (
         <div className="border-t border-white/10 pt-6">
-          <h3 className="text-sm font-medium text-white mb-4">
+          <h3 className="text-xs font-medium text-white mb-4">
             Edit Selected Text
           </h3>
 
@@ -212,7 +212,7 @@ export function TextControls() {
             <select
               value={fontFamily}
               onChange={(e) => applyFontFamily(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-700 border border-white/20 rounded text-white text-sm"
+              className="w-full px-3 py-2 bg-slate-700 border border-white/20 rounded text-white text-xs"
             >
               {FONT_FAMILIES.map((font) => (
                 <option key={font} value={font}>
@@ -226,7 +226,7 @@ export function TextControls() {
           <div className="space-y-2 mb-4">
             <div className="flex justify-between items-center">
               <label className="text-xs text-white/70">Font Size</label>
-              <span className="text-xs text-white/70">{fontSize}px</span>
+              <span className="text-[10px] text-white/70">{fontSize}px</span>
             </div>
             <Slider
               value={[fontSize]}
@@ -252,7 +252,7 @@ export function TextControls() {
                   key={align}
                   onClick={() => applyTextAlign(align)}
                   variant={textAlign === align ? "default" : "outline"}
-                  size="sm"
+                  size="xs"
                   className="p-2"
                 >
                   <Icon className="h-4 w-4" />
@@ -269,13 +269,13 @@ export function TextControls() {
                 type="color"
                 value={textColor}
                 onChange={(e) => applyTextColor(e.target.value)}
-                className="w-10 h-10 rounded border border-white/20 bg-transparent cursor-pointer"
+                className="w-8 h-8 rounded border border-white/20 bg-transparent cursor-pointer"
               />
               <Input
                 value={textColor}
                 onChange={(e) => applyTextColor(e.target.value)}
                 placeholder="#000000"
-                className="flex-1 bg-slate-700 border-white/20 text-white text-sm"
+                className="flex-1 bg-slate-700 border-white/20 text-white "
               />
             </div>
           </div>
@@ -289,7 +289,7 @@ export function TextControls() {
                 variant={
                   selectedText.fontWeight === "bold" ? "default" : "outline"
                 }
-                size="sm"
+                size="xs"
                 className="flex-1"
               >
                 <Bold className="h-4 w-4" />
@@ -299,7 +299,7 @@ export function TextControls() {
                 variant={
                   selectedText.fontStyle === "italic" ? "default" : "outline"
                 }
-                size="sm"
+                size="xs"
                 className="flex-1"
               >
                 <Italic className="h-4 w-4" />
@@ -307,7 +307,7 @@ export function TextControls() {
               <Button
                 onClick={() => toggleFormat("underline")}
                 variant={selectedText.underline ? "default" : "outline"}
-                size="sm"
+                size="xs"
                 className="flex-1"
               >
                 <Underline className="h-4 w-4" />
@@ -329,7 +329,7 @@ export function TextControls() {
 
       {/* Instructions */}
       <div className="bg-slate-700/30 rounded-lg p-3">
-        <p className="text-xs text-white/70">
+        <p className="text-[10px] text-white/70">
           <strong>Double-click</strong> any text to edit it directly on canvas.
           <br />
           <strong>Select</strong> text to see formatting options here.

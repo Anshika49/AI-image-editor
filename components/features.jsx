@@ -71,7 +71,7 @@ const FeaturesSection = () => {
     <section className="pt-6 pb-20" id="features">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-3">
+          <h2 className="text-4xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-3">
             Powerful AI Features
           </h2>
           <p className="text-sm md:text-base text-gray-300 max-w-3xl mx-auto">

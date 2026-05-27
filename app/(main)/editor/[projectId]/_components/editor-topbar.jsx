@@ -413,7 +413,7 @@ export function EditorTopBar({ project }) {
     <>
       <div className="border-b px-6 py-3">
         {/* Header Row */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           {/* Left: Back button and project name */}
           <div className="flex items-center gap-4">
             <Button
@@ -427,14 +427,14 @@ export function EditorTopBar({ project }) {
             </Button>
           </div>
 
-          <h1 className="font-extrabold capitalize">{project.title}</h1>
+          <h1 className="text-md font-bold capitalize">{project.title}</h1>
 
           {/* Right: Actions */}
           <div className="flex items-center gap-3">
             {/* Reset Button */}
             <Button
               variant="outline"
-              size="sm"
+              size="xs"
               onClick={handleResetToOriginal}
               disabled={isSaving || !project.originalImageUrl}
               className="gap-2"
@@ -455,7 +455,7 @@ export function EditorTopBar({ project }) {
             {/* Manual Save Button */}
             <Button
               variant="primary"
-              size="sm"
+              size="xs"
               onClick={handleManualSave}
               disabled={isSaving || !canvasEditor}
               className="gap-2"
@@ -478,7 +478,7 @@ export function EditorTopBar({ project }) {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="glass"
-                  size="sm"
+                  size="xs"
                   disabled={isExporting || !canvasEditor}
                   className="gap-2"
                 >
@@ -499,9 +499,9 @@ export function EditorTopBar({ project }) {
 
               <DropdownMenuContent
                 align="end"
-                className="w-56 bg-slate-800 border-slate-700"
+                className="w-50 bg-slate-800 border-slate-700"
               >
-                <div className="px-3 py-2 text-sm text-white/70">
+                <div className="px-3 py-2 text-[10px] text-white/70">
                   Export Resolution: {project.width} × {project.height}px
                 </div>
 
@@ -513,10 +513,10 @@ export function EditorTopBar({ project }) {
                     onClick={() => handleExport(config)}
                     className="text-white hover:bg-slate-700 cursor-pointer flex items-center gap-2"
                   >
-                    <FileImage className="h-4 w-4" />
+                    <FileImage className="h-3 w-3" />
                     <div className="flex-1">
-                      <div className="font-medium">{config.label}</div>
-                      <div className="text-xs text-white/50">
+                      <div className="text-xs font-medium">{config.label}</div>
+                      <div className="text-[10px] text-white/50">
                         {config.format} • {Math.round(config.quality * 100)}%
                         quality
                       </div>
@@ -528,7 +528,7 @@ export function EditorTopBar({ project }) {
 
                 {/* Export Limit Info for Free Users */}
                 {isFree && (
-                  <div className="px-3 py-2 text-xs text-white/50">
+                  <div className="px-3 py-2 text-[10px] text-white/50">
                     Free Plan: {user?.exportsThisMonth || 0}/20 exports this
                     month
                     {(user?.exportsThisMonth || 0) >= 20 && (
@@ -556,7 +556,7 @@ export function EditorTopBar({ project }) {
                 <Button
                   key={tool.id}
                   variant={isActive ? "default" : "ghost"}
-                  size="sm"
+                  size="xs"
                   onClick={() => handleToolChange(tool.id)}
                   className={`gap-2 relative ${
                     isActive

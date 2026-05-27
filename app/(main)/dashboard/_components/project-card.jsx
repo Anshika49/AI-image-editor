@@ -65,15 +65,15 @@ export default function ProjectCard({ project, onEdit }) {
 
       {/* Project Info */}
       <CardContent className="pb-4">
-        <p className="font-semibold text-md text-white mb-1 truncate">
+        <p className="font-semibold text-sm text-white mb-1 truncate">
           {project.title}
         </p>
 
-        <div className="flex items-center justify-between text-xs text-white/70">
+        <div className="flex items-center justify-between text-[10px] text-white/70">
           <span>Updated {lastUpdated}</span>
           <Badge
             variant="secondary"
-            className="text-xs bg-slate-700 text-white/70"
+            className="text-[10px] bg-slate-700 text-white/70"
           >
             {project.width} × {project.height}
           </Badge>

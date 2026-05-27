@@ -305,7 +305,7 @@ export function CropContent() {
   if (!activeImage && !isCropMode) {
     return (
       <div className="p-4">
-        <p className="text-white/70 text-sm">Select an image to crop</p>
+        <p className="text-white/70 text-xs">Select an image to crop</p>
       </div>
     );
   }
@@ -315,10 +315,10 @@ export function CropContent() {
       {/* Crop Mode Status */}
       {isCropMode && (
         <div className="bg-cyan-500/10 border border-cyan-500/20 rounded-lg p-3">
-          <p className="text-cyan-400 text-sm font-medium">
+          <p className="text-cyan-400 text-xs font-medium">
             ✂️ Crop Mode Active
           </p>
-          <p className="text-cyan-300/80 text-xs mt-1">
+          <p className="text-cyan-300/80 text-[10px] mt-1">
             Adjust the blue rectangle to set crop area
           </p>
         </div>
@@ -331,7 +331,7 @@ export function CropContent() {
           className="w-full"
           variant="primary"
         >
-          <Crop className="h-4 w-4 mr-2" />
+          <Crop className="h-3 w-3 mr-2" />
           Start Cropping
         </Button>
       )}
@@ -339,7 +339,7 @@ export function CropContent() {
       {/* Aspect Ratio Selection - Only show in crop mode */}
       {isCropMode && (
         <div>
-          <h3 className="text-sm font-medium text-white mb-3">
+          <h3 className="text-xs font-medium text-white mb-3">
             Crop Aspect Ratios
           </h3>
           <div className="grid grid-cols-3 gap-2">
@@ -355,10 +355,10 @@ export function CropContent() {
                       : "border-white/20 hover:border-white/40 hover:bg-white/5"
                   }`}
                 >
-                  <IconComponent className="h-6 w-6 mx-auto mb-2 text-white" />
-                  <div className="text-xs text-white">{ratio.label}</div>
+                  <IconComponent className="h-4 w-4 mx-auto mb-1 text-white" />
+                  <div className="text-[10px] text-white">{ratio.label}</div>
                   {ratio.ratio && (
-                    <div className="text-xs text-white/70">{ratio.ratio}</div>
+                    <div className="text-[10px] text-white/70">{ratio.ratio}</div>
                   )}
                 </button>
               );
@@ -371,12 +371,12 @@ export function CropContent() {
       {isCropMode && (
         <div className="space-y-3 pt-4 border-t border-white/10">
           <Button onClick={applyCrop} className="w-full" variant="primary">
-            <CheckCheck className="h-4 w-4 mr-2" />
+            <CheckCheck className="h-3 w-3 mr-2" />
             Apply Crop
           </Button>
 
           <Button onClick={cancelCrop} variant="outline" className="w-full">
-            <X className="h-4 w-4 mr-2" />
+            <X className="h-3 w-3 mr-2" />
             Cancel
           </Button>
         </div>
@@ -384,7 +384,7 @@ export function CropContent() {
 
       {/* Instructions */}
       <div className="bg-slate-700/30 rounded-lg p-3">
-        <p className="text-xs text-white/70">
+        <p className="text-[10px] text-white/70">
           <strong>How to crop:</strong>
           <br />
           1. Click "Start Cropping"

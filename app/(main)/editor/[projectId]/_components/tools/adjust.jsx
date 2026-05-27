@@ -203,10 +203,10 @@ export function AdjustControls() {
     <div className="space-y-6">
       {/* Reset Button */}
       <div className="flex justify-between items-center">
-        <h3 className="text-sm font-medium text-white">Image Adjustments</h3>
+        <h3 className="text-xs font-medium text-white">Image Adjustments</h3>
         <Button
           variant="ghost"
-          size="sm"
+          size="xs"
           onClick={resetFilters}
           className="text-white/70 hover:text-white"
         >
@@ -219,8 +219,8 @@ export function AdjustControls() {
       {FILTER_CONFIGS.map((config) => (
         <div key={config.key} className="space-y-2">
           <div className="flex justify-between items-center">
-            <label className="text-sm text-white">{config.label}</label>
-            <span className="text-xs text-white/70">
+            <label className="text-xs text-white">{config.label}</label>
+            <span className="text-[10px] text-white/70">
               {filterValues[config.key]}
               {config.suffix || ""}
             </span>
@@ -238,7 +238,7 @@ export function AdjustControls() {
 
       {/* Info */}
       <div className="mt-6 p-3 bg-slate-700/50 rounded-lg">
-        <p className="text-xs text-white/70">
+        <p className="text-[10px] text-white/70">
           Adjustments are applied in real-time. Use the Reset button to restore
           original values.
         </p>

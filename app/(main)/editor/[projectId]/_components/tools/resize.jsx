@@ -217,11 +217,11 @@ const handleApplyResize = async () => {
   const hasChanges = newWidth !== project.width || newHeight !== project.height;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Current Size Display */}
-      <div className="bg-slate-700/30 rounded-lg p-3">
-        <h4 className="text-sm font-medium text-white mb-2">Current Size</h4>
-        <div className="text-xs text-white/70">
+      <div className="bg-slate-700/30 rounded-lg p-2">
+        <h4 className="text-xs font-medium text-white mb-2">Current Size</h4>
+        <div className="text-[10px] text-white/70">
           {project.width} × {project.height} pixels
         </div>
       </div>
@@ -229,10 +229,10 @@ const handleApplyResize = async () => {
       {/* Manual Size Input */}
       <div className="space-y-4">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="text-sm font-medium text-white">Custom Size</h3>
+          <h3 className="text-xs font-medium text-white">Custom Size</h3>
           <Button
             variant="ghost"
-            size="sm"
+            size="xs"
             onClick={() => setLockAspectRatio(!lockAspectRatio)}
             className="text-white/70 hover:text-white p-1"
           >
@@ -253,7 +253,7 @@ const handleApplyResize = async () => {
               onChange={(e) => handleWidthChange(e.target.value)}
               min="100"
               max="5000"
-              className="bg-slate-700 border-white/20 text-white"
+              className="bg-slate-700 border-white/20 text-white "
             />
           </div>
           <div>
@@ -278,7 +278,7 @@ const handleApplyResize = async () => {
 
       {/* Aspect Ratio Presets */}
       <div className="space-y-3">
-        <h3 className="text-sm font-medium text-white">Aspect Ratios</h3>
+        <h3 className="text-xs font-medium text-white">Aspect Ratios</h3>
         <div className="grid grid-cols-1 gap-2 max-h-60 overflow-y-auto">
           {ASPECT_RATIOS.map((aspectRatio) => {
             const dimensions = calculateAspectRatioDimensions(
@@ -290,7 +290,7 @@ const handleApplyResize = async () => {
                 variant={
                   selectedPreset === aspectRatio.name ? "default" : "outline"
                 }
-                size="sm"
+                size="xs"
                 onClick={() => applyAspectRatio(aspectRatio)}
                 className={`justify-between h-auto py-2 ${
                   selectedPreset === aspectRatio.name
@@ -299,8 +299,8 @@ const handleApplyResize = async () => {
                 }`}
               >
                 <div>
-                  <div className="font-medium">{aspectRatio.name}</div>
-                  <div className="text-xs opacity-70">
+                  <div className="font-medium text-[10px]">{aspectRatio.name}</div>
+                  <div className="text-[10px] opacity-70">
                     {dimensions.width} × {dimensions.height} (
                     {aspectRatio.label})
                   </div>
@@ -315,10 +315,10 @@ const handleApplyResize = async () => {
       {/* New Size Preview */}
       {hasChanges && (
         <div className="bg-slate-700/30 rounded-lg p-3">
-          <h4 className="text-sm font-medium text-white mb-2">
+          <h4 className="text-xs font-medium text-white mb-2">
             New Size Preview
           </h4>
-          <div className="text-xs text-white/70">
+          <div className="text-[10px] text-white/70">
             <div>
               New Canvas: {newWidth} × {newHeight} pixels
             </div>
@@ -341,13 +341,13 @@ const handleApplyResize = async () => {
         className="w-full"
         variant="primary"
       >
-        <Expand className="h-4 w-4 mr-2" />
+        <Expand className="h-3 w-3 mr-2" />
         Apply Resize
       </Button>
 
       {/* Instructions */}
       <div className="bg-slate-700/30 rounded-lg p-3">
-        <p className="text-xs text-white/70">
+        <p className="text-[10px] text-white/70">
           <strong>Resize Canvas:</strong> Changes canvas dimensions.
           <br />
           <strong>Aspect Ratios:</strong> Smart sizing based on your current

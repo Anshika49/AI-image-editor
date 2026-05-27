@@ -22,10 +22,10 @@ export default function DashboardPage() {
         {/* Dashboard Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-2">
+            <h1 className="text-2xl font-bold text-white mb-2">
               Your Projects
             </h1>
-            <p className="text-white/70 text-md">
+            <p className="text-white/70 text-sm">
               Create and manage your AI-powered image designs
             </p>
           </div>
@@ -33,7 +33,7 @@ export default function DashboardPage() {
           <Button
             onClick={() => setShowNewProjectModal(true)}
             variant="primary"
-            size="lg"
+            size="sm"
             className="gap-2"
           >
             <Plus className="h-3 w-3" />
