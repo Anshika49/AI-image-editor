@@ -2,14 +2,26 @@ import { NextResponse } from "next/server";
 import ImageKit from "imagekit";
 import { auth } from "@clerk/nextjs/server";
 
+console.log("PUBLIC:", process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY);
+console.log("PRIVATE:", process.env.IMAGEKIT_PRIVATE_KEY ? "FOUND" : "MISSING");
+console.log("URL:", process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT);
+
 // Initialize ImageKit
-const imagekit = new ImageKit({
-  publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-  urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT,
-});
+// const imagekit = new ImageKit({
+//   publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
+//   privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+//   urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT,
+// });
+function getImageKit() {
+  return new ImageKit({
+    publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
+    urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT,
+  });
+}
 
 export async function POST(request) {
+  const imagekit = getImageKit();
   try {
     // Verify authentication
     const { userId } = await auth();
